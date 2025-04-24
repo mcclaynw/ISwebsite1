@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catch the Guitar!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #f9f9ff, #cce6ff);
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      color: #004080;
+      margin-bottom: 10px;
+    }
+
+    #score {
+      font-size: 1.5em;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    #cheerleader {
+      position: absolute;
+      width: 80px;
+      height: auto;
+      cursor: pointer;
+      transition: top 0.3s ease, left 0.3s ease;
+    }
+
+    .back-link {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 1em;
+    }
+
+    .back-link a {
+      text-decoration: none;
+      color: #004080;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="back-link">
+    <a href="music.html">← Back to Music Page</a>
+  </div>
+
+  <h1>Catch the Guitar! 🏃‍♀️</h1>
+  <div id="score">Score: 0</div>
+  <img id="cheerleader" src="images/electric-guitar.png" alt="Cheerleader">
+
+  <script>
+    const cheerleader = document.getElementById('cheerleader');
+    const scoreDisplay = document.getElementById('score');
+    let score = 0;
+
+    function moveCheerleader() {
+      const maxX = window.innerWidth - 50;
+      const maxY = window.innerHeight - 50;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+      cheerleader.style.left = `${x}px`;
+      cheerleader.style.top = `${y}px`;
+    }
+
+    cheerleader.addEventListener('click', () => {
+      score++;
+      scoreDisplay.textContent = `Score: ${score}`;
+      moveCheerleader();
+    });
+
+    // Start moving cheerleader every 1.5 seconds
+    setInterval(moveCheerleader, 1500);
+    moveCheerleader(); // initial move
+  </script>
+
+</body>
+</html>
